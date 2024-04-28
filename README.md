@@ -1,4 +1,4 @@
-This is Clipboard Manager
+This is Clipboard Manager for non-Windows systems.
 
 Have you ever felt like copying multiple things was impossible in regular computers?
 
