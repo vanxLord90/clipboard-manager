@@ -30,6 +30,7 @@ class ClipAdvanced(Frame):
             l = Label(self, text="", cursor="plus", relief=RAISED, pady=5,  wraplength=500)
             l.pack(fill=BOTH, padx=5, pady=2, expand=1)
             l.bind("<Button-1>", lambda e, labelNum=i: self.onClick(labelNum))
+            l.bind("<Button-3>", self.onLabelRightClick)
             self.labelArray.append({
                 "label": l,
                 "text": "", #only for debugging purposes, only label["text"] matters
@@ -68,9 +69,31 @@ class ClipAdvanced(Frame):
         optionsMenu = Menu(menubar, tearoff=0)
         optionsMenu.add_checkbutton(label="Always on top", command=self.toggle_on_top)
         optionsMenu.add_command(label="Clear all (except last)", command=self.clear)
+        optionsMenu.add_command(label="Clear individual", command=self.clearOne)
+        self.labelContextMenu= Menu(self, tearoff=0)
+        self.labelContextMenu.add_command(label="Clear One", command = lambda: self.clearOne(self.activeLabel))
         menubar.add_cascade(label="Options", menu=optionsMenu)
         self.parent.config(menu=menubar)
-        
+
+    def setupLabels(self):
+        for i, labelElm in enumerate(self.labelArray):
+            label = labelElm['label']
+            label.bind("<Button-3>", self.onLabelRightClick)
+
+    def onLabelRightClick(self, event):
+        """Handle right-click on a label to show the context menu."""
+        self.activeLabel = self.getLabelNumFromEvent(event)
+        if self.activeLabel is not None:
+            self.labelContextMenu.post(event.x_root, event.y_root)
+        else:
+            print("Could not find label from event")
+
+    def getLabelNumFromEvent(self, event):
+        """Extract label number from event."""
+        for num, labelElm in enumerate(self.labelArray):
+            if labelElm['label'] == event.widget:
+                return num
+        return None  # In case nothing matches
 
     # toggle always on top
     def toggle_on_top(self):
@@ -91,6 +114,16 @@ class ClipAdvanced(Frame):
                 labelElm["updated"]=0
             self.initDefaultValues()
     # onclick
+    def clearOne(self,labelNum):
+        labelElm = self.labelArray[labelNum]
+        if messagebox.askyesno("ClearOne","Clear this item?"):
+            label = labelElm["label"]
+            label["text"]=""
+            label["relief"] = RAISED
+            labelElm["clickCount"] = 0
+            labelElm["updated"] = 0
+            if self.debug:
+                print(f"Cleared content for label {labelNum}")
 
     def onClick(self, labelNum):
         labelElm = self.labelArray[labelNum]

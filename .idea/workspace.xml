@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3fec65eb-8c1d-4731-8556-01ca878fd97a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clipyadvanced.py" beforeDir="false" afterPath="$PROJECT_DIR$/clipyadvanced.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/m.py" beforeDir="false" afterPath="$PROJECT_DIR$/m.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/advanced_clip.py" beforeDir="false" afterPath="$PROJECT_DIR$/advanced_clip.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +23,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -35,6 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.advanced_clip.executor": "Run",
     "Python.clip.executor": "Run",
     "Python.clipyadvanced.executor": "Run",
     "Python.m.executor": "Run",
