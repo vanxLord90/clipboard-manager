@@ -33,14 +33,13 @@ class ClipAdvanced(Frame):
             l.bind("<Button-3>", self.onLabelRightClick)
             self.labelArray.append({
                 "label": l,
-                "text": "", #only for debugging purposes, only label["text"] matters
+                "text": "",
                 "clickCount": 0,
                 "updated": 0,
             })
 
     def updateClipboard(self):
             try:
-                #cliptext = self.clipboard_get()
                 cliptext = pyperclip.paste()
                 self.processClipping(cliptext=cliptext)
 
@@ -69,7 +68,6 @@ class ClipAdvanced(Frame):
         optionsMenu = Menu(menubar, tearoff=0)
         optionsMenu.add_checkbutton(label="Always on top", command=self.toggle_on_top)
         optionsMenu.add_command(label="Clear all (except last)", command=self.clear)
-        optionsMenu.add_command(label="Clear individual", command=self.clearOne)
         self.labelContextMenu= Menu(self, tearoff=0)
         self.labelContextMenu.add_command(label="Clear One", command = lambda: self.clearOne(self.activeLabel))
         menubar.add_cascade(label="Options", menu=optionsMenu)
@@ -166,7 +164,7 @@ class ClipAdvanced(Frame):
                 labelElem["updated"] = self.labelUpdateVal
                 labelElem["text"] = cliptextShort
                 labelElem["clickCount"] = 0
-            else: # New clipping but shortened version is the same, so discard previous value
+            else:
                 self.clipboardContent.discard(self.clipboardContentMapping[cliptextShort])
 
             self.clipboardContent.add(cliptext)
